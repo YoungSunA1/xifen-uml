@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>信息化规划四层结构</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&display=swap" media="print" onload="this.media='all'">
+<style>
+  :root {
+    --bg: #f2f5f8;
+    --fg: #16202b;
+    --muted: #5f6f7d;
+    --line: #d3dce4;
+    --line-strong: #b3c3d0;
+    --surface: #ffffff;
+    --surface-2: #e8eef3;
+    --accent: #1d5e8c;
+    --accent-soft: #e3eef7;
+    --good: #2c7a4e;
+    --bad: #b0322f;
+
+    --font-display: 'Noto Serif SC', 'Songti SC', SimSun, Georgia, serif;
+    --font-body: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+
+    --text-xs: 12px; --text-sm: 13px; --text-md: 15px; --text-lg: 18px; --text-xl: 24px; --text-2xl: 30px;
+    --measure: 68ch;
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f151b;
+      --fg: #e6ecf2;
+      --muted: #94a3b1;
+      --line: #27313b;
+      --line-strong: #3d4b59;
+      --surface: #161e26;
+      --surface-2: #1b242d;
+      --accent: #6fb0dd;
+      --accent-soft: #16303f;
+      --good: #63b382;
+      --bad: #e07777;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: var(--text-md)/1.7 var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; margin: 0; font-weight: 600; }
+  h1 { font-size: var(--text-2xl); }
+  h2 { font-size: var(--text-xl); }
+  p { margin: 0; max-width: var(--measure); }
+  ul, ol { margin: 0; padding-left: 1.5em; display: grid; gap: 8px; }
+  li { max-width: var(--measure); }
+  li > ul, li > ol { margin-top: 8px; }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 48px 28px 72px; display: grid; gap: 44px; }
+  .stack { display: grid; gap: 14px; }
+  .eyebrow { font-size: var(--text-xs); letter-spacing: .1em; color: var(--muted); }
+  .note { font-size: var(--text-sm); color: var(--muted); max-width: var(--measure); }
+  .scroll-x { overflow-x: auto; }
+  .surface { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; }
+
+  hr.rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
+
+  table { border-collapse: collapse; width: 100%; font-size: var(--text-sm); line-height: 1.6; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 500; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: 0; }
+  table.wide { min-width: 900px; }
+  td.mem { color: var(--accent); }
+
+  figure { margin: 0; display: grid; gap: 10px; }
+  figcaption { font-size: var(--text-sm); color: var(--muted); max-width: var(--measure); }
+  svg.diagram { display: block; width: 100%; min-width: 780px; height: auto; }
+  .dg-cap { font-size: 12px; letter-spacing: .08em; fill: var(--muted); }
+  .dg-t { font-size: 15px; fill: var(--fg); }
+  .dg-mid { fill: var(--surface); stroke: var(--line); }
+  .dg-left { fill: var(--surface-2); stroke: var(--line); }
+  .dg-right { fill: var(--accent-soft); stroke: var(--accent); }
+  .dg-tick { stroke: var(--line-strong); stroke-width: 1.5; }
+  .dg-arrow { stroke: var(--accent); stroke-width: 1.5; }
+  .dg-head { fill: var(--accent); }
+
+  .footnotes { font-size: var(--text-sm); color: var(--muted); }
+  .footnotes li { max-width: 78ch; }
+  .k { color: var(--fg); }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <p style="margin:0 0 6px;font-size:13px;"><a href="https://youngsuna1.github.io/xifen-uml/" style="text-decoration:none;">← 卡片目录</a></p>
+
+  <header class="stack">
+    <span class="eyebrow">系统分析师 · 第 6 章 企业信息化</span>
+    <h1>信息化规划四层结构</h1>
+    <p>教材图 6-2「信息化规划涉及的主要内容和关系」重绘与拆解：四种战略规划各回答哪一层问题、彼此如何依赖，以及考场上最容易混的那一对选项。</p>
+  </header>
+
+  <section class="stack">
+    <h2>一、图 6-2 重绘</h2>
+    <figure class="surface">
+      <div class="scroll-x">
+        <svg class="diagram" viewBox="0 0 1000 384" role="img" aria-label="信息化规划涉及的主要内容和关系：五个层次的问题，分别由企业战略规划、信息系统战略规划、信息技术战略规划、信息资源规划回答，业务流程重组覆盖上面四层。">
+          <text class="dg-cap" x="81" y="32" text-anchor="middle">覆盖的领域</text>
+          <text class="dg-cap" x="485" y="32" text-anchor="middle">要回答的问题</text>
+          <text class="dg-cap" x="912" y="32" text-anchor="middle">对应的规划</text>
+
+          <rect class="dg-left" x="6" y="44" width="150" height="254" rx="6"/>
+          <text class="dg-t" x="81" y="181" transform="rotate(-90 81 181)" text-anchor="middle">业务流程重组</text>
+          <rect class="dg-left" x="6" y="324" width="150" height="44" rx="6"/>
+          <text class="dg-t" x="81" y="351" text-anchor="middle">信息资源规划</text>
+
+          <rect class="dg-mid" x="170" y="44" width="250" height="44" rx="6"/>
+          <text class="dg-t" x="295" y="71" text-anchor="middle">理解关键的企业目标</text>
+          <rect class="dg-mid" x="230" y="114" width="250" height="44" rx="6"/>
+          <text class="dg-t" x="355" y="141" text-anchor="middle">企业如何达到目标</text>
+          <rect class="dg-mid" x="290" y="184" width="280" height="44" rx="6"/>
+          <text class="dg-t" x="430" y="211" text-anchor="middle">信息系统如何支撑这些目标</text>
+          <rect class="dg-mid" x="380" y="254" width="300" height="44" rx="6"/>
+          <text class="dg-t" x="530" y="281" text-anchor="middle">需要哪些信息技术支撑信息系统</text>
+          <rect class="dg-mid" x="470" y="324" width="330" height="44" rx="6"/>
+          <text class="dg-t" x="635" y="351" text-anchor="middle">信息化建设具体项目的实施</text>
+
+          <line class="dg-tick" x1="156" y1="66" x2="170" y2="66"/>
+          <line class="dg-tick" x1="156" y1="136" x2="230" y2="136"/>
+          <line class="dg-tick" x1="156" y1="206" x2="290" y2="206"/>
+          <line class="dg-tick" x1="156" y1="276" x2="380" y2="276"/>
+          <line class="dg-tick" x1="156" y1="346" x2="470" y2="346"/>
+
+          <rect class="dg-right" x="830" y="114" width="164" height="44" rx="6"/>
+          <text class="dg-t" x="912" y="141" text-anchor="middle">企业战略规划</text>
+          <rect class="dg-right" x="830" y="184" width="164" height="44" rx="6"/>
+          <text class="dg-t" x="912" y="211" text-anchor="middle">信息系统战略规划</text>
+          <rect class="dg-right" x="830" y="254" width="164" height="44" rx="6"/>
+          <text class="dg-t" x="912" y="281" text-anchor="middle">信息技术战略规划</text>
+          <rect class="dg-right" x="830" y="324" width="164" height="44" rx="6"/>
+          <text class="dg-t" x="912" y="351" text-anchor="middle">信息资源规划</text>
+
+          <line class="dg-arrow" x1="830" y1="136" x2="486" y2="136"/>
+          <polygon class="dg-head" points="480,136 492,130 492,142"/>
+          <line class="dg-arrow" x1="830" y1="206" x2="576" y2="206"/>
+          <polygon class="dg-head" points="570,206 582,200 582,212"/>
+          <line class="dg-arrow" x1="830" y1="276" x2="686" y2="276"/>
+          <polygon class="dg-head" points="680,276 692,270 692,282"/>
+          <line class="dg-arrow" x1="830" y1="346" x2="806" y2="346"/>
+          <polygon class="dg-head" points="800,346 812,340 812,352"/>
+        </svg>
+      </div>
+      <figcaption>据《系统分析师教程》第 2 版 图 6-2 重绘（教材 p.201）。右侧四个箭头表示四种规划分别回答左侧对应的那一层问题；左侧跨行的「业务流程重组」表示它覆盖上面四层的问题域。</figcaption>
+    </figure>
+    <ol>
+      <li>理解关键的企业目标——一切规划的起点：所有规划都应围绕企业关键目标的实现而展开。</li>
+      <li>企业如何达到目标——由企业战略规划回答。</li>
+      <li>信息系统如何支撑这些目标——由信息系统战略规划回答。</li>
+      <li>需要哪些信息技术支撑信息系统——由信息技术战略规划回答。</li>
+      <li>信息化建设具体项目的实施——由信息资源规划回答。</li>
+    </ol>
+  </section>
+
+  <section class="stack">
+    <h2>二、四种规划的分工（对照表）</h2>
+    <div class="surface scroll-x">
+      <table class="wide">
+        <thead>
+          <tr><th>规划</th><th>管什么（记忆短语）</th><th>回答的问题</th><th>教材定义要点</th><th>关注点 / 步骤</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>企业战略规划</td>
+            <td class="mem">企业方向</td>
+            <td>企业如何达到目标</td>
+            <td>用机会和威胁评价现在和未来的环境，用优势和劣势评价企业现状，进而选择和确定企业的总体和长远目标，制定和抉择实现目标的行动方案。</td>
+            <td>总体目标与长远目标、行动方案（机会—威胁 / 优势—劣势分析）</td>
+          </tr>
+          <tr>
+            <td>信息系统战略规划<br><span class="note">ISSP，Information System Strategic Planning</span></td>
+            <td class="mem">系统架构与业务支撑</td>
+            <td>信息系统如何支撑这些目标</td>
+            <td>关注的是如何通过信息系统来支撑业务流程的运作，进而实现企业的关键业务目标。</td>
+            <td>重点在于对信息系统远景、组成架构、各部分逻辑关系进行规划</td>
+          </tr>
+          <tr>
+            <td>信息技术战略规划<br><span class="note">通常简称 IT 战略规划</span></td>
+            <td class="mem">技术环境</td>
+            <td>需要哪些信息技术支撑信息系统</td>
+            <td>在信息系统战略规划的基础上，对支撑信息系统运行的硬件、软件、支撑环境等进行具体的规划，它更关心技术层面的问题。</td>
+            <td>业务分析 → 检查当前的 IT 架构和信息系统 → 识别机会 → 选择方案（这些步骤构成一个连续统一体，即 IT 战略规划的过程）</td>
+          </tr>
+          <tr>
+            <td>信息资源规划<br><span class="note">IRP，Information Resource Planning</span></td>
+            <td class="mem">数据与标准</td>
+            <td>信息化建设具体项目的实施</td>
+            <td>在以上规划的基础上，为开展具体的信息化建设项目而进行的数据需求分析、信息资源标准建立、信息资源整合工作。</td>
+            <td>面向落地：数据需求、标准、整合，直接支撑具体建设项目</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="surface">
+      <p>一句话记法（自上而下顺着图 6-2 读）：<span class="k">企业战略规划管企业方向，信息系统战略规划管系统架构与业务支撑，信息技术战略规划管技术环境，信息资源规划管数据与标准</span>。</p>
+    </div>
+    <p class="note">四个短语是对教材定义的压缩，不是教材原词；其中「系统架构与业务支撑」对应教材原话：对信息系统远景、组成架构、各部分逻辑关系进行规划，并支撑业务流程的运作、实现企业的关键业务目标。</p>
+    <p class="note">英文全拼说明：教材正文只给出了 IRP 的全拼，ISSP 为通行英文写法，IT 战略规划与「信息技术战略规划」是同一概念。</p>
+  </section>
+
+  <section class="stack">
+    <h2>三、依赖关系：自上而下指导，自下而上支撑</h2>
+    <ol>
+      <li>总体原则：所有的规划都应该围绕企业关键目标的实现而展开，并为企业目标的实现提供支持和必需的服务。</li>
+      <li>自上而下的指导链：企业战略规划定目标 → 信息系统战略规划定支撑业务的信息系统远景与架构 → 信息技术战略规划落实硬件、软件与支撑环境 → 信息资源规划做数据需求分析与资源整合 → 进入具体项目的实施。</li>
+      <li>自下而上的促进链：通过先进信息系统的支持，完成业务流程的优化，实现企业管理、组织配置与信息技术的结合；反过来，通过业务流程重组和信息资源规划，进一步促进企业信息化规划进程，指导信息系统的设计与实施。</li>
+      <li>业务流程重组的定位：它不是与四种规划并列的「第五种规划」，而是贯穿上面四层的问题域。它利用信息技术，对企业的组织结构和工作方法进行「彻底的、根本性的」重新设计，现已成为企业信息化的重要方法。</li>
+      <li>一句话记住图的结构：左侧是「领域」，中间是「问题」，右侧是「规划」；四条右箭头由上到下依次是 企业战略规划 → 信息系统战略规划 → 信息技术战略规划 → 信息资源规划，顺序不能颠倒。</li>
+    </ol>
+  </section>
+
+  <section class="stack">
+    <h2>四、信息化规划与企业战略规划的关系</h2>
+    <div class="surface scroll-x">
+      <table class="wide">
+        <thead>
+          <tr><th>信息化阶段</th><th>需求怎么来</th><th>形成的信息系统结构</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>初级阶段</td>
+            <td>业务部门根据现有的业务流程或管理需要，直接提出信息化需求，IT 部门按需求实施</td>
+            <td>完全基于企业组织与业务流程的信息系统结构，各个信息系统分别对应于特定部门或特定业务流程</td>
+          </tr>
+          <tr>
+            <td>中级阶段</td>
+            <td>企业已制定整体战略规划，业务部门根据企业战略先改进业务流程和组织结构，再由不同业务部门分别提出需求、IT 部门分别独立实施</td>
+            <td>与优化后的组织结构和业务流程相适应</td>
+          </tr>
+          <tr>
+            <td>高级阶段</td>
+            <td>依据整体战略规划，通盘考虑各业务部门的信息化需求，制定整体的信息化战略，统一规划、分步实施</td>
+            <td>由企业信息化战略统一指导，并与优化后的组织结构和业务流程相适应</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ol>
+      <li>互为条件：一方面企业战略的实现已经离不开信息技术和信息系统，企业战略需要信息化战略的支持；另一方面，离开企业战略去规划信息系统，犹如建设海市蜃楼——信息化战略接受企业战略的指导。</li>
+      <li>核心问题：企业信息化建设的核心问题是保证企业信息化战略与企业战略的一致性，把企业战略的目标转换为信息系统的战略目标。</li>
+      <li>典型后果：很多企业二者分别独立运行、缺乏协调和统一，导致企业战略缺乏信息系统的支撑，同时信息系统缺少企业战略的指导而无效或低效——这是造成「IT 黑洞」的主要原因之一。</li>
+      <li>集成方法：业务与 IT 整合（Business-IT Alignment，BITA），以业务为导向、全面的 IT 管理咨询实施方法论，适用于信息系统不能满足当前管理中的业务需要、业务和 IT 之间总是不一致的企业；企业 IT 架构（Enterprise IT Architecture，EITA），分析企业战略、帮助企业制定 IT 战略并指导投资决策，在技术、信息系统、信息、IT 组织和 IT 流程方面建立 IT 的原则规范、模式和标准，适用于现有信息系统和 IT 基础架构不一致、不兼容、缺乏统一的整体管理的企业。两者有相同之处甚至在某些领域重叠，可择一或结合使用。</li>
+    </ol>
+  </section>
+
+  <section class="stack">
+    <h2>五、考场秒判：题干关键词 → 选谁</h2>
+    <div class="surface scroll-x">
+      <table class="wide">
+        <thead>
+          <tr><th>题干出现的表述</th><th>答案</th><th>管什么</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>评价企业现状、（选择和确定）企业的总体和长远目标、制定和抉择实现目标的行动方案</td><td>企业战略规划</td><td class="mem">企业方向</td></tr>
+          <tr><td>如何通过信息系统来支撑业务流程的运作，进而实现企业的关键业务目标</td><td>信息系统战略规划</td><td class="mem">系统架构与业务支撑</td></tr>
+          <tr><td>对支撑信息系统运行的硬件、软件、支撑环境等进行具体的规划</td><td>信息技术战略规划（IT 战略规划）</td><td class="mem">技术环境</td></tr>
+          <tr><td>数据需求分析、信息资源标准建立、信息资源整合，开展具体的信息化建设项目</td><td>信息资源规划</td><td class="mem">数据与标准</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="stack">
+    <h2>六、易错点</h2>
+    <ol>
+      <li>信息系统战略规划不等于信息技术战略规划：前者的对象是「信息系统」（信息系统远景、组成架构、各部分逻辑关系），后者的对象是「支撑信息系统运行的技术」（硬件、软件、支撑环境）。题干往上谈架构选前者，往下谈设备与环境选后者。</li>
+      <li>看动词的宾语：「支撑业务流程的运作、实现关键业务目标」→信息系统战略规划；「支撑信息系统运行」→信息技术战略规划。差别只在宾语那一层。</li>
+      <li>企业战略规划的标志词是「评价环境 / 评价现状」「总体和长远目标」「行动方案」，语言是机会与威胁、优势与劣势。</li>
+      <li>信息资源规划不是「信息系统的规划」，它是为开展具体信息化建设项目而进行的数据需求分析、标准建立与资源整合，对应图中最底层「信息化建设具体项目的实施」。</li>
+      <li>业务流程重组不要当选项去和四种规划并列：它跨列覆盖上面四层，属于企业信息化的重要方法（教材 6.7 节）。</li>
+      <li>图 6-2 的读法别搞反：右侧箭头是「规划解答了左侧那一层的问题」，不是左侧问题「产生了」右侧规划。</li>
+    </ol>
+  </section>
+
+  <section class="stack">
+    <h2>七、可直接背的句式</h2>
+    <ol>
+      <li>企业信息化规划不仅涉及信息系统规划，同时与企业规划、业务流程建模等紧密相关，是融合企业战略、管理规划、业务流程重组等内容的「业务＋管理＋技术」的规划活动。</li>
+      <li>所有的规划，都应该围绕企业关键目标的实现而展开，并为企业目标的实现提供支持和必需的服务。</li>
+      <li>企业战略规划回答「企业要达到什么」，信息系统战略规划回答「信息系统如何支撑这些目标」，信息技术战略规划回答「需要哪些信息技术支撑信息系统」，信息资源规划回答「具体信息化建设项目如何实施」。</li>
+      <li>信息化规划与企业战略规划总是互相影响、互相促进；二者分别独立运行、缺乏协调和统一，是造成「IT 黑洞」的主要原因之一。</li>
+      <li>信息化规划是融合企业战略、管理规划、业务流程重组等内容的综合规划活动，是信息系统设计和实施的前提和依据，其目标是避免信息系统林立、数据资源分散、信息孤岛与重复返工。</li>
+    </ol>
+  </section>
+
+  <section class="stack">
+    <h2>八、同节相邻考点（6.3.3 信息系统战略规划方法）</h2>
+    <ol>
+      <li>关键成功因素法（Critical Success Factor，CSF）：识别企业目标对应的关键成功因素，找出实现目标所需要的关键信息集合，从而确定系统开发的优先次序；CSF 是为确保业务流程的成功需要完成的最重要的工作，是业务流程的可观察、可测量的特性。</li>
+      <li>战略目标集转化法（Strategy Set Transformation，SST）。</li>
+      <li>企业系统规划法（Business System Planning，BSP）：核心是识别企业过程，从而把企业目标转化为系统的目标。</li>
+      <li>CSB 方法：这三种方法往往结合使用、统称为 CSB 方法，即先用 CSF 确定企业目标，再用 SST 补充完善企业目标，并将其转化为信息系统目标。</li>
+      <li>战略栅格：依据现有信息系统和规划中的信息系统的战略影响，确定出战略型、转变型、工厂型、支持型（辅助型）四种信息系统战略规划条件。</li>
+      <li>战略一致性模型（Strategic Alignment Model，SAM）：Henderson 于 1994 年提出，用于检查企业战略与信息基础架构之间的一致性，把企业战略规划和信息化战略规划的关系划分为内部领域和外部领域两部分。</li>
+    </ol>
+    <p class="note">CSF、SST、BSP、SAM 的英文全拼为通行写法，教材正文仅给出缩写与中文名称。</p>
+  </section>
+
+  <hr class="rule">
+
+  <section class="stack footnotes">
+    <h2>出处</h2>
+    <ol>
+      <li>《系统分析师教程》（第 2 版，清华大学出版社）第 6 章「企业信息化」→ 6.3「企业信息化规划」：6.3.1 信息化规划的内容（含图 6-2，教材 p.201）、6.3.2 信息化规划与企业战略规划（教材 p.202–203）、6.3.3 信息系统战略规划方法（教材 p.204 起）。</li>
+      <li>同章相关：6.2.3 信息资源规划（IRP，教材 p.198）、6.7 业务流程重组（BPR，教材 p.236）。</li>
+      <li>老版教材出处：本题标注为「第十章 系统开发高级知识 / 第二节 企业信息化与系统规划」（第 1 版章节体系），内容与第 2 版 6.3 节一致。</li>
+      <li>真题来源：2016 年上半年 系统分析师 上午题 第 52 题（本题所在题目）。</li>
+    </ol>
+  </section>
+
+</main>
+</body>
+</html>
